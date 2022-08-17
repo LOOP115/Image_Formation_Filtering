@@ -41,7 +41,7 @@ def count_intersections(image_path):
     plt.axis('off')
 
     # Use the following the kernel to filter the maze
-    # All intersections will be highlighted as white and the rest are black
+    # Intersections will be highlighted as white and the rest are black
     kernel = np.array([[1, -2, 1],
                        [-2, 0, -2],
                        [1, -2, 1]])
@@ -52,4 +52,4 @@ def count_intersections(image_path):
     plt.axis('off')
     plt.show()
 
-    return len(np.argwhere(intersections != 0))
+    return len(np.argwhere(intersections == 255))

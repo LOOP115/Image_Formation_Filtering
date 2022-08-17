@@ -4,7 +4,7 @@
 
 
 
-## Task 1 - Height of Sculpture ✔
+## Task 1 - Height of Sculpture 
 
 * use pinhole projection
 * ground plane is perfectly flat and horizontal
@@ -24,8 +24,8 @@ Show your work and include a **diagram** to illustrate how you set up the proble
 
 Write an algorithm to count the number of **intersections** and **dead ends** in randomly-generated mazes.
 
-* detect the intersections in the maze (points where the path branches into 2 or more paths) ✔
-* detect the dead ends in the maze (points where the path ends, not counting the start/exit points)
+* detect the intersections in the maze (points where the path branches into 2 or more paths) 
+* detect the dead ends in the maze (points where the path ends, not counting the start/exit points) 
 
 * Each maze consists of black lines on a white background and has a start/exit point at the top/bottom edge of the image.
 
