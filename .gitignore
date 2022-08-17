@@ -1,3 +1,4 @@
 *.pyc
 .idea
 .ipynb_checkpoints/code-checkpoint.ipynb
+*.bkp

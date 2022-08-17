@@ -4,8 +4,9 @@ from matplotlib import pyplot as plt
 
 maze1 = "images/Asst1_2_maze1.png"
 maze2 = "images/Asst1_2_maze2.png"
+test1 = "images/test1.png"
 
-img = cv2.imread(maze2, cv2.IMREAD_GRAYSCALE)
+img = cv2.imread(maze1, cv2.IMREAD_GRAYSCALE)
 
 # Resize
 img_height, img_width = img.shape
@@ -15,18 +16,6 @@ new_width = img_width // 2
 img = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_NEAREST)
 cv2.imshow("resize", img)
 
-# Add white borders
-img = np.insert(img, 0, 255, axis=0)
-img = np.insert(img, 0, 255, axis=1)
-img = np.insert(img, img.shape[0], 255, axis=0)
-img = np.insert(img, img.shape[1], 255, axis=1)
-
-img = np.insert(img, 0, 255, axis=0)
-img = np.insert(img, 0, 255, axis=1)
-img = np.insert(img, img.shape[0], 255, axis=0)
-img = np.insert(img, img.shape[1], 255, axis=1)
-
-
 kernel1 = np.array([[1, -1.1, 1],
                     [-1.1, 0, -1.1],
                     [1, -1.1, 1]])
@@ -34,7 +23,6 @@ output1 = cv2.filter2D(img, -1, kernel1)
 cv2.imshow("o1", output1)
 
 # output1 = cv2.bitwise_not(output1)
-# cv2.imshow("o1", output1)
 
 threshold, output2 = cv2.threshold(output1, 178, 255, cv2.THRESH_TOZERO_INV)
 cv2.imshow("o2", output2)
