@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
@@ -16,15 +15,41 @@ new_width = img_width // 2
 img = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_NEAREST)
 cv2.imshow("resize", img)
 
-kernel1 = np.array([[1/26, 3/26, 1/26],
-                    [3/26, 10/26, 3/26],
-                    [1/26, 3/26, 1/26]])
+kernel1 = np.array([[1, -2, 1],
+                    [-2, 0, -2],
+                    [1, -2, 1]])
 output1 = cv2.filter2D(img, -1, kernel1)
 cv2.imshow("o1", output1)
-
-hold, output2 = cv2.threshold(output1, 70, 255, cv2.THRESH_BINARY)
-cv2.imshow("o2", output2)
-print(len(np.argwhere(output2 != 255)))
+print(len(np.argwhere(output1 != 0)))
 
 cv2.waitKey()
 cv2.destroyAllWindows()
+
+
+def count_intersections(image_path):
+    # Read image
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+
+    # Resize the image so that walls in maze are one pixel wide
+    image_height, image_width = image.shape
+    new_height = image_height // 2
+    new_width = image_width // 2
+    maze = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_NEAREST)
+    plt.subplot(1, 2, 1)
+    plt.imshow(maze, cmap='gray')
+    plt.title('Resized image')
+    plt.axis('off')
+
+    # Use the following the kernel to filter the maze
+    # All intersections will be highlighted as white and the rest are black
+    kernel = np.array([[1, -2, 1],
+                       [-2, 0, -2],
+                       [1, -2, 1]])
+    intersections = cv2.filter2D(maze, -1, kernel)
+    plt.subplot(1, 2, 2)
+    plt.imshow(intersections, cmap='gray')
+    plt.title('Kernel applied')
+    plt.axis('off')
+    plt.show()
+
+    return len(np.argwhere(intersections != 0))
