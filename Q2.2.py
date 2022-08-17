@@ -15,6 +15,18 @@ new_width = img_width // 2
 img = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_NEAREST)
 cv2.imshow("resize", img)
 
+# Add white borders
+img = np.insert(img, 0, 255, axis=0)
+img = np.insert(img, 0, 255, axis=1)
+img = np.insert(img, img.shape[0], 255, axis=0)
+img = np.insert(img, img.shape[1], 255, axis=1)
+
+img = np.insert(img, 0, 255, axis=0)
+img = np.insert(img, 0, 255, axis=1)
+img = np.insert(img, img.shape[0], 255, axis=0)
+img = np.insert(img, img.shape[1], 255, axis=1)
+
+
 kernel1 = np.array([[1, -1.1, 1],
                     [-1.1, 0, -1.1],
                     [1, -1.1, 1]])
